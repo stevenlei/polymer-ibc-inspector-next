@@ -19,7 +19,7 @@ const Packet = ({ channel }) => (
           <span className="text-sm text-slate-400">
             @{" "}
             {channel.states[0].timestamp &&
-              new Date(channel.states[0].timestamp).toLocaleString()}
+              new Date(channel.states[0].timestamp * 1000).toLocaleString()}
           </span>
         </span>
         <div className="flex gap-x-2 items-center">
