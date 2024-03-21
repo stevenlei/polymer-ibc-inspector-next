@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Script from "next/script";
-import Packet from "../components/Packet";
+import Header from "../components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     //
-    fetchChannels();
+    // fetchChannels();
   }, []);
 
   useEffect(() => {
@@ -98,28 +98,8 @@ export default function Home() {
         `}
       </Script>
 
-      <header className="flex justify-between">
-        <h1 className="text-2xl font-bold text-slate-800">
-          Polymer IBC Inspector
-          <span className="text-sm font-normal ml-2 text-slate-400">
-            v0.1 (MVP)
-          </span>
-        </h1>
-        <a
-          href="https://x.com/stevenkin"
-          className="flex text-sm mr-2 pl-4 opacity-90 hover:opacity-100"
-          target="_blank"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="w-8 h-8 fill-current text-slate-800"
-          >
-            <g>
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-            </g>
-          </svg>
-        </a>
-      </header>
+      <Header page="Channels" />
+
       <div className="flex flex-col space-y-6 my-8">
         <div>
           <input
