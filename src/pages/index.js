@@ -1,12 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { Inter } from "next/font/google";
 import { io } from "socket.io-client";
 import Head from "next/head";
-import Script from "next/script";
+import Main from "../components/Main";
 import Packet from "../components/Packet";
 import Header from "../components/Header";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -121,29 +118,18 @@ export default function Home() {
   };
 
   return (
-    <main className={`p-12 ${inter.className} min-h-screen bg-slate-200`}>
+    <Main>
       <Head>
         <title>Polymer IBC Inspector</title>
       </Head>
 
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-HCMGB8T4Q3" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-HCMGB8T4Q3');
-        `}
-      </Script>
-
       <Header page="Live" />
 
-      <div className="flex flex-col space-y-6 my-8">
+      <div className="flex flex-col space-y-6 my-4 md:my-8">
         {data.map((channel, i) => (
           <Packet channel={channel} key={`${channel.id}-${channel.sequence}`} />
         ))}
       </div>
-    </main>
+    </Main>
   );
 }

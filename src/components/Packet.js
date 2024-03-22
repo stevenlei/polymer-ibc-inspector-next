@@ -1,28 +1,32 @@
 const Packet = ({ channel }) => (
   <div className="bg-white rounded-lg overflow-hidden ring-1 ring-slate-200">
-    <div className="overflow-x-auto">
-      <h4 className="flex justify-between items-center bg-slate-600 text-white px-3 py-2">
-        <span className="flex items-center gap-x-2">
-          <span
-            className={`${
-              channel.channel === "universal"
-                ? "text-yellow-300"
-                : "text-blue-300"
-            } bg-slate-800 text-slate-200 text-sm px-1 rounded`}
-          >
-            {channel.channel === "universal" ? "Universal" : "Custom"}
-          </span>
-          {channel.id}{" "}
-          <strong className="bg-slate-300 rounded px-1 text-sm text-slate-600">
-            #{channel.sequence}
-          </strong>
-          <span className="text-sm text-slate-400">
-            @{" "}
+    <div>
+      <h4 className="flex flex-wrap lg:flex-nowrap justify-between items-center bg-slate-600 text-white px-3 py-2 w-full">
+        <span className="flex items-center gap-x-2 flex-wrap lg:flex-nowrap flex-1">
+          <div className="block md:flex relative items-center gap-x-2 w-full md:w-auto justify-between">
+            <span
+              className={`${
+                channel.channel === "universal"
+                  ? "text-yellow-300"
+                  : "text-blue-300"
+              } bg-slate-800 text-slate-200 text-sm px-1 rounded`}
+            >
+              {channel.channel === "universal" ? "Universal" : "Custom"}
+            </span>
+            <span className="w-full md:w-auto absolute md:static left-0 text-center">
+              {channel.id}{" "}
+            </span>
+            <strong className="absolute md:static right-0 bg-slate-300 rounded px-1 text-sm text-slate-600">
+              #{channel.sequence}
+            </strong>
+          </div>
+          <span className="text-sm text-slate-400 w-full text-center md:w-auto md:text-left">
+            <span className="hidden sm:inline">@ </span>
             {channel.states[0].arrival &&
               new Date(channel.states[0].arrival).toLocaleString()}
           </span>
         </span>
-        <div className="flex gap-x-2 items-center">
+        <div className="flex gap-x-2 items-center w-full md:w-auto justify-center text-xs md:text-sm lg:text-base text-slate-200">
           {channel.from}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,14 +46,14 @@ const Packet = ({ channel }) => (
         </div>
       </h4>
       <ul>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100">
-          <div className="flex gap-x-8 items-center">
+        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100 flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+          <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-blue-200 text-blue-600 text-sm px-2 py-1 rounded self-center">
               SendPacket
             </span>
             {channel.states[0] ? (
               <>
-                <div className="flex flex-col text-xs">
+                <div className="flex flex-col text-xs w-full lg:w-auto">
                   <span className="text-slate-500">sourcePort</span>
                   <span className="font-mono text-blue-600">
                     <a
@@ -60,7 +64,7 @@ const Packet = ({ channel }) => (
                     </a>
                   </span>
                 </div>
-                <div className="flex flex-col text-xs">
+                <div className="flex flex-col text-xs w-full lg:w-auto">
                   <span className="text-slate-500">Timeout</span>
                   <span className="font-mono text-slate-800">
                     {new Date(
@@ -70,44 +74,46 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             ) : (
-              <svg
-                className="animate-spin h-5 w-5 text-slate-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              <div className="flex flex-col text-xs w-full lg:w-auto">
+                <svg
+                  className="animate-spin h-5 w-5 text-slate-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
             )}
           </div>
-          <div className="flex space-x-8">
+          <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[0] && (
               <>
-                <div className="flex flex-col text-xs w-32">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
                   <span className="text-slate-500">Data</span>
                   <span className="font-mono text-slate-800">
                     (Coming Soon)
                   </span>
                 </div>
-                {/* <div className="flex flex-col text-xs w-32">
+                {/* <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
                           <span className="text-slate-500">Arrival</span>
                           <span className="font-mono text-slate-800">
                             + {channel.states[0].arrival} seconds
                           </span>
                         </div> */}
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
                     <a href={explorerUrl(channel.states[0], "block")}>
@@ -115,7 +121,7 @@ const Packet = ({ channel }) => (
                     </a>
                   </span>
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
@@ -129,20 +135,32 @@ const Packet = ({ channel }) => (
               </>
             )}
             {channel.from === "optimism-sepolia" ? (
-              <span className="badge-op self-center">OP</span>
+              <span
+                className={`badge-op self-center absolute ${
+                  channel.states[0] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                OP
+              </span>
             ) : (
-              <span className="badge-base self-center">BASE</span>
+              <span
+                className={`badge-base self-center absolute ${
+                  channel.states[0] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                BASE
+              </span>
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between">
-          <div className="flex gap-x-8 items-center">
+        <li className="px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+          <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-yellow-300 text-yellow-700 text-sm px-2 py-1 rounded self-center">
               RecvPacket
             </span>
             {channel.states[1] ? (
               <>
-                <div className="flex flex-col text-xs">
+                <div className="flex flex-col text-xs w-full lg:w-auto">
                   <span className="text-slate-500">destPort</span>
                   <span className="font-mono text-blue-600">
                     <a
@@ -155,32 +173,34 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             ) : (
-              <svg
-                className="animate-spin h-5 w-5 text-slate-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              <div className="flex flex-col text-xs w-full lg:w-auto">
+                <svg
+                  className="animate-spin h-5 w-5 text-slate-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
             )}
           </div>
-          <div className="flex space-x-8">
+          <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[1] && (
               <>
-                <div className="flex flex-col text-xs w-32">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[1] && channel.states[0] && (
                     <span className="font-mono text-slate-800">
@@ -194,7 +214,7 @@ const Packet = ({ channel }) => (
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
                     <a href={explorerUrl(channel.states[1], "block")}>
@@ -202,7 +222,7 @@ const Packet = ({ channel }) => (
                     </a>
                   </span>
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
@@ -216,19 +236,31 @@ const Packet = ({ channel }) => (
               </>
             )}
             {channel.from === "optimism-sepolia" ? (
-              <span className="badge-base self-center">BASE</span>
+              <span
+                className={`badge-base self-center absolute ${
+                  channel.states[1] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                BASE
+              </span>
             ) : (
-              <span className="badge-op self-center">OP</span>
+              <span
+                className={`badge-op self-center absolute ${
+                  channel.states[1] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                OP
+              </span>
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100">
-          <div className="flex gap-x-8 items-center">
+        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100 flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+          <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-gray-300 text-gray-600 text-sm px-2 py-1 rounded self-center">
               WriteAckPacket
             </span>
             {channel.states[2] ? (
-              <div className="flex flex-col text-xs">
+              <div className="flex flex-col text-xs w-full lg:w-auto">
                 <span className="text-slate-500">writerPort</span>
                 <span className="font-mono text-blue-600">
                   <a
@@ -240,32 +272,34 @@ const Packet = ({ channel }) => (
                 </span>
               </div>
             ) : (
-              <svg
-                className="animate-spin h-5 w-5 text-slate-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              <div className="flex flex-col text-xs w-full lg:w-auto">
+                <svg
+                  className="animate-spin h-5 w-5 text-slate-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
             )}
           </div>
-          <div className="flex space-x-8">
+          <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[2] && (
               <>
-                <div className="flex flex-col text-xs w-32">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[2] && channel.states[1] && (
                     <span className="font-mono text-slate-800">
@@ -279,7 +313,7 @@ const Packet = ({ channel }) => (
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
                     <a href={explorerUrl(channel.states[2], "block")}>
@@ -287,7 +321,7 @@ const Packet = ({ channel }) => (
                     </a>
                   </span>
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
@@ -301,20 +335,32 @@ const Packet = ({ channel }) => (
               </>
             )}
             {channel.from === "optimism-sepolia" ? (
-              <span className="badge-base self-center">BASE</span>
+              <span
+                className={`badge-base self-center absolute ${
+                  channel.states[2] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                BASE
+              </span>
             ) : (
-              <span className="badge-op self-center">OP</span>
+              <span
+                className={`badge-op self-center absolute ${
+                  channel.states[2] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                OP
+              </span>
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between">
-          <div className="flex gap-x-8 items-center">
+        <li className="px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+          <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-green-300 text-green-700 text-sm px-2 py-1 rounded self-center">
               Acknowledgement
             </span>
             {channel.states[3] ? (
               <>
-                <div className="flex flex-col text-xs">
+                <div className="flex flex-col text-xs w-full lg:w-auto">
                   <span className="text-slate-500">sourcePort</span>
                   <span className="font-mono text-blue-600">
                     <a
@@ -327,32 +373,34 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             ) : (
-              <svg
-                className="animate-spin h-5 w-5 text-slate-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              <div className="flex flex-col text-xs w-full lg:w-auto">
+                <svg
+                  className="animate-spin h-5 w-5 text-slate-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
             )}
           </div>
-          <div className="flex space-x-8">
+          <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[3] && (
               <>
-                <div className="flex flex-col text-xs w-32">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[3] && channel.states[2] && (
                     <span className="font-mono text-slate-800">
@@ -366,7 +414,7 @@ const Packet = ({ channel }) => (
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
                     <a href={explorerUrl(channel.states[3], "block")}>
@@ -374,7 +422,7 @@ const Packet = ({ channel }) => (
                     </a>
                   </span>
                 </div>
-                <div className="flex flex-col text-xs w-20">
+                <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
@@ -388,9 +436,21 @@ const Packet = ({ channel }) => (
               </>
             )}
             {channel.from === "optimism-sepolia" ? (
-              <span className="badge-op self-center">OP</span>
+              <span
+                className={`badge-op self-center absolute ${
+                  channel.states[3] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                OP
+              </span>
             ) : (
-              <span className="badge-base self-center">BASE</span>
+              <span
+                className={`badge-base self-center absolute ${
+                  channel.states[3] ? "top-0" : "top-2"
+                } right-2 lg:static`}
+              >
+                BASE
+              </span>
             )}
           </div>
         </li>

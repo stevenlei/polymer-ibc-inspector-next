@@ -1,19 +1,19 @@
 import Link from "next/link";
 
 const Header = ({ page, version = "v0.1 (MVP)" }) => (
-  <header className="flex justify-between">
-    <h1 className="text-2xl font-bold text-slate-800">
+  <header className="flex justify-between flex-wrap">
+    <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-800">
       Polymer IBC Inspector
       <span className="text-sm font-normal ml-2 text-slate-400">
         v0.2 (MVP)
       </span>
     </h1>
     <div className="flex gap-x-12 items-center">
-      <ul className="flex gap-x-12">
+      <ul className="mt-4 md:mt-0 flex gap-x-12 text-sm lg:text-lg">
         <li>
           <Link
             href="/"
-            className={`text-lg ${
+            className={`${
               page === "Live" ? "text-slate-800" : "text-slate-500"
             }`}
           >
@@ -23,7 +23,7 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
         <li>
           <Link
             href="/packets"
-            className={`text-lg ${
+            className={`${
               page === "Packets" ? "text-slate-800" : "text-slate-500"
             }`}
           >
@@ -33,7 +33,7 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
         <li>
           <Link
             href="/channels"
-            className={`text-lg ${
+            className={`${
               page === "Channels" ? "text-slate-800" : "text-slate-500"
             }`}
           >
@@ -43,7 +43,7 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
       </ul>
       <a
         href="https://x.com/stevenkin"
-        className="flex text-sm mr-2 ml-4 opacity-90 hover:opacity-100 hover:bg-slate-300 rounded-full p-2"
+        className="absolute top-2 right-0 sm:static flex text-sm mr-2 ml-4 opacity-90 hover:opacity-100 hover:bg-slate-300 rounded-full p-2"
         target="_blank"
       >
         <svg
