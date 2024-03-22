@@ -60,7 +60,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">sourcePort</span>
                   <span className="font-mono text-blue-600">
                     <a
-                      href={explorerUrl(channel.states[0], "address")}
+                      href={explorerUrl(
+                        channel.states[0].chain.id,
+                        channel.states[0].portAddress,
+                        "address"
+                      )}
                       target="_blank"
                     >
                       {channel.states[0].portAddress}
@@ -111,7 +115,14 @@ const Packet = ({ channel }) => (
                 <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
-                    <a href={explorerUrl(channel.states[0], "block")}>
+                    <a
+                      href={explorerUrl(
+                        channel.states[0].chain.id,
+                        channel.states[0].block.number,
+                        "block"
+                      )}
+                      target="_blank"
+                    >
                       {channel.states[0].block.number}
                     </a>
                   </span>
@@ -120,7 +131,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
-                      href={explorerUrl(channel.states[0], "tx")}
+                      href={explorerUrl(
+                        channel.states[0].chain.id,
+                        channel.states[0].txHash,
+                        "tx"
+                      )}
                       target="_blank"
                     >
                       {shorten(channel.states[0].txHash)}
@@ -159,7 +174,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">destPort</span>
                   <span className="font-mono text-blue-600">
                     <a
-                      href={explorerUrl(channel.states[1], "address")}
+                      href={explorerUrl(
+                        channel.states[1].chain.id,
+                        channel.states[1].portAddress,
+                        "address"
+                      )}
                       target="_blank"
                     >
                       {channel.states[1].portAddress}
@@ -206,7 +225,14 @@ const Packet = ({ channel }) => (
                 <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
-                    <a href={explorerUrl(channel.states[1], "block")}>
+                    <a
+                      href={explorerUrl(
+                        channel.states[1].chain.id,
+                        channel.states[1].block.number,
+                        "block"
+                      )}
+                      target="_blank"
+                    >
                       {channel.states[1].block.number}
                     </a>
                   </span>
@@ -215,7 +241,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
-                      href={explorerUrl(channel.states[1], "tx")}
+                      href={explorerUrl(
+                        channel.states[1].chain.id,
+                        channel.states[1].txHash,
+                        "tx"
+                      )}
                       target="_blank"
                     >
                       {shorten(channel.states[1].txHash)}
@@ -253,7 +283,11 @@ const Packet = ({ channel }) => (
                 <span className="text-slate-500">writerPort</span>
                 <span className="font-mono text-blue-600">
                   <a
-                    href={explorerUrl(channel.states[2], "address")}
+                    href={explorerUrl(
+                      channel.states[2].chain.id,
+                      channel.states[2].portAddress,
+                      "address"
+                    )}
                     target="_blank"
                   >
                     {channel.states[2].portAddress}
@@ -299,7 +333,14 @@ const Packet = ({ channel }) => (
                 <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
-                    <a href={explorerUrl(channel.states[2], "block")}>
+                    <a
+                      href={explorerUrl(
+                        channel.states[2].chain.id,
+                        channel.states[2].block.number,
+                        "block"
+                      )}
+                      target="_blank"
+                    >
                       {channel.states[2].block.number}
                     </a>
                   </span>
@@ -308,7 +349,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
-                      href={explorerUrl(channel.states[2], "tx")}
+                      href={explorerUrl(
+                        channel.states[2].chain.id,
+                        channel.states[2].txHash,
+                        "tx"
+                      )}
                       target="_blank"
                     >
                       {shorten(channel.states[2].txHash)}
@@ -347,7 +392,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">sourcePort</span>
                   <span className="font-mono text-blue-600">
                     <a
-                      href={explorerUrl(channel.states[3], "address")}
+                      href={explorerUrl(
+                        channel.states[3].chain.id,
+                        channel.states[3].portAddress,
+                        "address"
+                      )}
                       target="_blank"
                     >
                       {channel.states[3].portAddress}
@@ -394,7 +443,14 @@ const Packet = ({ channel }) => (
                 <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
-                    <a href={explorerUrl(channel.states[3], "block")}>
+                    <a
+                      href={explorerUrl(
+                        channel.states[3].chain.id,
+                        channel.states[3].block.number,
+                        "block"
+                      )}
+                      target="_blank"
+                    >
                       {channel.states[3].block.number}
                     </a>
                   </span>
@@ -403,7 +459,11 @@ const Packet = ({ channel }) => (
                   <span className="text-slate-500">Tx</span>
                   <span className="font-mono text-slate-800">
                     <a
-                      href={explorerUrl(channel.states[3], "tx")}
+                      href={explorerUrl(
+                        channel.states[3].chain.id,
+                        channel.states[3].txHash,
+                        "tx"
+                      )}
                       target="_blank"
                     >
                       {shorten(channel.states[3].txHash)}
@@ -436,22 +496,22 @@ const Packet = ({ channel }) => (
   </div>
 );
 
-const explorerUrl = (packet, type) => {
-  if (packet.op) {
+const explorerUrl = (chain, address, type) => {
+  if (chain === "optimism-sepolia") {
     if (type === "tx") {
-      return `https://optimism-sepolia.blockscout.com/tx/${packet.tx}`;
+      return `https://optimism-sepolia.blockscout.com/tx/${address}`;
     } else if (type === "address") {
-      return `https://optimism-sepolia.blockscout.com/address/${packet.tx}`;
+      return `https://optimism-sepolia.blockscout.com/address/${address}`;
     } else if (type === "block") {
-      return `https://optimism-sepolia.blockscout.com/block/${packet.tx}`;
+      return `https://optimism-sepolia.blockscout.com/block/${address}`;
     }
-  } else if (packet.base) {
+  } else if (chain === "base-sepolia") {
     if (type === "tx") {
-      return `https://base-sepolia.blockscout.com/tx/${packet.tx}`;
+      return `https://base-sepolia.blockscout.com/tx/${address}`;
     } else if (type === "address") {
-      return `https://base-sepolia.blockscout.com/address/${packet.tx}`;
+      return `https://base-sepolia.blockscout.com/address/${address}`;
     } else if (type === "block") {
-      return `https://base-sepolia.blockscout.com/block/${packet.tx}`;
+      return `https://base-sepolia.blockscout.com/block/${address}`;
     }
   }
 };
