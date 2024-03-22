@@ -9,7 +9,7 @@ const Packet = ({ channel }) => (
                 channel.fromChannel.type === "UNIVERSAL"
                   ? "text-yellow-300"
                   : "text-blue-300"
-              } bg-slate-800 text-slate-200 text-sm px-1 rounded`}
+              } bg-slate-800 text-slate-200 text-xs lg:text-sm px-1 py-0.5 lg:px-2 rounded`}
             >
               {channel.fromChannel.type === "UNIVERSAL"
                 ? "Universal"
@@ -29,8 +29,8 @@ const Packet = ({ channel }) => (
               new Date(channel.states[0].timestamp * 1000).toLocaleString()}
           </span>
         </span>
-        <div className="flex gap-x-2 items-center w-full md:w-auto justify-center text-xs md:text-sm lg:text-base text-slate-200">
-          {channel.fromChain.id}
+        <div className="flex gap-x-2 items-center w-full md:w-auto justify-center text-sm lg:text-base text-slate-200">
+          {channel.fromChannel.client}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -45,7 +45,7 @@ const Packet = ({ channel }) => (
               d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
             />
           </svg>
-          {channel.toChain.id}
+          {channel.toChannel.client}
         </div>
       </h4>
       <ul>
@@ -224,7 +224,7 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             )}
-            {channel.toChannel.id === "optimism-sepolia" ? (
+            {channel.toChain.id === "optimism-sepolia" ? (
               <span
                 className={`badge-op self-center absolute ${
                   channel.states[1] ? "top-0" : "top-2"
@@ -317,7 +317,7 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             )}
-            {channel.toChannel.id === "optimism-sepolia" ? (
+            {channel.toChain.id === "optimism-sepolia" ? (
               <span
                 className={`badge-op self-center absolute ${
                   channel.states[2] ? "top-0" : "top-2"
@@ -412,7 +412,7 @@ const Packet = ({ channel }) => (
                 </div>
               </>
             )}
-            {channel.fromChannel.id === "optimism-sepolia" ? (
+            {channel.fromChain.id === "optimism-sepolia" ? (
               <span
                 className={`badge-op self-center absolute ${
                   channel.states[3] ? "top-0" : "top-2"

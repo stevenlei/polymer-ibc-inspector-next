@@ -49,10 +49,12 @@ export default function Home() {
                 fromChannel {
                   id
                   type
+                  client
                 }
                 toChannel {
                   id
                   type
+                  client
                 }
                 timeout
                 timestamp

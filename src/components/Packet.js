@@ -26,7 +26,7 @@ const Packet = ({ channel }) => (
               new Date(channel.states[0].arrival).toLocaleString()}
           </span>
         </span>
-        <div className="flex gap-x-2 items-center w-full md:w-auto justify-center text-xs md:text-sm lg:text-base text-slate-200">
+        <div className="flex gap-x-2 items-center w-full md:w-auto justify-center text-sm lg:text-base text-slate-200">
           {channel.from}
           <svg
             xmlns="http://www.w3.org/2000/svg"
