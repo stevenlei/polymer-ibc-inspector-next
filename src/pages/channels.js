@@ -222,7 +222,6 @@ export default function Home() {
                     <span className="text-slate-500">connectionHops</span>
                     <span className="font-mono text-blue-600 break-all">
                       {JSON.stringify(channel.counterparty.connectionHops)}
-                      channel.counterparty.connectionHops
                     </span>
                   </div>
                 </li>
