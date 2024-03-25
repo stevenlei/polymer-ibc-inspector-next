@@ -1,4 +1,4 @@
-const Packet = ({ channel }) => (
+const Packet = ({ channel, tx }) => (
   <div className="bg-white rounded-lg overflow-hidden ring-1 ring-slate-200">
     <div>
       <h4 className="flex flex-wrap lg:flex-nowrap justify-between items-center bg-slate-600 text-white px-3 py-2 w-full">
@@ -49,7 +49,13 @@ const Packet = ({ channel }) => (
         </div>
       </h4>
       <ul>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100 flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+        <li
+          className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
+            tx && tx === channel.states[0].txHash
+              ? "bg-amber-100"
+              : "bg-slate-100"
+          }`}
+        >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-blue-200 text-blue-600 text-sm px-2 py-1 rounded self-center">
               SendPacket
@@ -163,7 +169,11 @@ const Packet = ({ channel }) => (
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+        <li
+          className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
+            tx && tx === channel.states[1].txHash ? "bg-amber-100" : ""
+          }`}
+        >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-yellow-300 text-yellow-700 text-sm px-2 py-1 rounded self-center">
               RecvPacket
@@ -273,7 +283,13 @@ const Packet = ({ channel }) => (
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between bg-slate-100 flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+        <li
+          className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
+            tx && tx === channel.states[2].txHash
+              ? "bg-amber-100"
+              : "bg-slate-100"
+          }`}
+        >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-gray-300 text-gray-600 text-sm px-2 py-1 rounded self-center">
               WriteAckPacket
@@ -381,7 +397,11 @@ const Packet = ({ channel }) => (
             )}
           </div>
         </li>
-        <li className="px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0">
+        <li
+          className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
+            tx && tx === channel.states[3].txHash ? "bg-amber-100" : ""
+          }`}
+        >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
             <span className="w-36 text-center bg-green-300 text-green-700 text-sm px-2 py-1 rounded self-center">
               Acknowledgement
