@@ -51,7 +51,7 @@ const Packet = ({ channel, tx }) => (
       <ul>
         <li
           className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
-            tx && tx === channel.states[0].txHash
+            tx && tx === channel.states[0]?.txHash
               ? "bg-amber-100"
               : "bg-slate-100"
           }`}
@@ -171,7 +171,7 @@ const Packet = ({ channel, tx }) => (
         </li>
         <li
           className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
-            tx && tx === channel.states[1].txHash ? "bg-amber-100" : ""
+            tx && tx === channel.states[1]?.txHash ? "bg-amber-100" : ""
           }`}
         >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">
@@ -285,7 +285,7 @@ const Packet = ({ channel, tx }) => (
         </li>
         <li
           className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
-            tx && tx === channel.states[2].txHash
+            tx && tx === channel.states[2]?.txHash
               ? "bg-amber-100"
               : "bg-slate-100"
           }`}
@@ -399,7 +399,7 @@ const Packet = ({ channel, tx }) => (
         </li>
         <li
           className={`px-3 py-2 flex gap-x-2 items-center justify-between flex-wrap lg:flex-nowrap relative space-y-2 lg:space-y-0 ${
-            tx && tx === channel.states[3].txHash ? "bg-amber-100" : ""
+            tx && tx === channel.states[3]?.txHash ? "bg-amber-100" : ""
           }`}
         >
           <div className="flex gap-x-8 items-center flex-wrap lg:flex-nowrap space-y-2 lg:space-y-0">

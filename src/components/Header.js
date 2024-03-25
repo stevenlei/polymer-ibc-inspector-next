@@ -3,10 +3,8 @@ import Link from "next/link";
 const Header = ({ page, version = "v0.1 (MVP)" }) => (
   <header className="flex justify-between flex-wrap">
     <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-800">
-      Polymer IBC Inspector
-      <span className="text-sm font-normal ml-2 text-slate-400">
-        v0.2 (MVP)
-      </span>
+      <Link href="/">Polymer IBC Inspector</Link>
+      <span className="text-sm font-normal ml-2 text-slate-400">v0.3</span>
     </h1>
     <div className="flex gap-x-12 items-center">
       <ul className="mt-4 md:mt-0 flex gap-x-12 text-sm lg:text-lg">

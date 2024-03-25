@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Inter } from "next/font/google";
 import Head from "next/head";
 import Main from "../../components/Main";
 import Packet from "../../components/PacketRecord";
@@ -6,26 +7,48 @@ import Header from "../../components/Header";
 import Search from "../../components/Search";
 import { useRouter } from "next/router";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export default function Home() {
   const router = useRouter();
-  const [address, setAddress] = useState("");
   const [data, setData] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
   const [total, setTotal] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (router.isReady) {
-      const { addr } = router.query;
-      setAddress(addr);
-      fetchPackets(addr);
+      const { id } = router.query;
+
+      if (id) {
+        const parts = id[0].split(".");
+
+        if (parts.length === 1) {
+          setKeyword(parts[0]);
+        } else {
+          setKeyword(`${parts[0]}#${parts[1]}`);
+        }
+      } else {
+        setKeyword("");
+      }
+
+      setOffset(0);
+      setLoaded(true);
     }
   }, [router.isReady, router.query]);
 
-  async function fetchPackets(addr) {
-    if (!addr) return;
+  async function fetchPackets() {
+    let queryKeyword = keyword;
+    let sequenceQuery = "";
+
+    if (keyword.includes("#")) {
+      let parts = keyword.split("#");
+      queryKeyword = parts[0];
+      sequenceQuery = `, sequence: ${parts[1]}`;
+    }
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
       method: "POST",
@@ -35,7 +58,7 @@ export default function Home() {
       body: JSON.stringify({
         query: `
           query Packets {
-            packets(from: "${addr}", limit: ${limit}, offset: ${offset}) {
+            packets(fromChannelId: "${queryKeyword}", limit: ${limit}, offset: ${offset}${sequenceQuery}) {
               totalCount
               limit
               offset
@@ -85,25 +108,22 @@ export default function Home() {
       }),
     });
     const packets = await response.json();
-
-    if (packets.data.packets.totalCount === 0) setNotFound(true);
-
-    setData(packets.data.packets.list);
-    setTotal(packets.data.packets.totalCount);
+    if (packets.data.packets.totalCount === 0) {
+      setNotFound(true);
+      setData([]);
+    } else {
+      setData(packets.data.packets.list);
+      setTotal(packets.data.packets.totalCount);
+      setNotFound(false);
+    }
   }
 
   useEffect(() => {
     //
-    fetchPackets(address);
-  }, [offset]);
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      setOffset(0);
-      setTotal(null);
+    if (loaded) {
       fetchPackets();
     }
-  };
+  }, [loaded, offset, keyword]);
 
   const shorten = (str) => {
     return str.slice(0, 6) + "..." + str.slice(-4);
@@ -127,8 +147,13 @@ export default function Home() {
             <div className="flex justify-between items-center text-slate-500 text-sm md:text-base">
               <p>
                 Showing {offset + 1} to {offset + limit} of {total || "-"}{" "}
-                packets associated with{" "}
-                <strong className="break-all">{address}</strong>
+                packets
+                {keyword && (
+                  <>
+                    {" "}
+                    for <strong className="break-all">{keyword}</strong>
+                  </>
+                )}
               </p>
               <ul className="flex space-x-1">
                 <li>
@@ -185,8 +210,8 @@ export default function Home() {
 
         {notFound && (
           <p className="text-red-600 text-sm md:text-base">
-            No packets found for address{" "}
-            <strong className="break-all">{address}</strong>
+            No packets found for{" "}
+            <strong className="break-all">{keyword}</strong>
           </p>
         )}
       </div>

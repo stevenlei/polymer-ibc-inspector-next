@@ -4,6 +4,7 @@ import Head from "next/head";
 import Main from "../../components/Main";
 import Packet from "../../components/PacketRecord";
 import Header from "../../components/Header";
+import Search from "../../components/Search";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -16,11 +17,10 @@ export default function Home() {
   useEffect(() => {
     if (router.isReady) {
       const { hash } = router.query;
-
       fetchPacket(hash);
       setTx(hash);
     }
-  }, [router.isReady]);
+  }, [router.isReady, router.query]);
 
   async function fetchPacket(tx) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
@@ -82,7 +82,9 @@ export default function Home() {
 
     if (data) {
       setData(packet.data.packet);
+      setNotFound(false);
     } else {
+      setData(null);
       setNotFound(true);
     }
   }
@@ -107,21 +109,15 @@ export default function Home() {
 
       <div className="flex flex-col space-y-6 my-4 md:my-8">
         <div>
-          <input
-            type="text"
-            placeholder="e.g. channel-10 or channel-10#123"
-            className="w-full p-2 rounded outline-none bg-slate-100 text-slate-800 focus:ring-2 focus:ring-slate-300 text-sm md:text-base"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
+          <Search router={router} keyword={keyword} />
         </div>
 
         {data && (
           <>
             <div className="flex justify-between items-center text-slate-500 text-sm md:text-base">
               <p>
-                Search result for transaction hash <strong>{tx}</strong>
+                Search result for transaction hash{" "}
+                <strong className="break-all">{tx}</strong>
               </p>
             </div>
             <Packet channel={data} tx={tx} />
@@ -130,7 +126,8 @@ export default function Home() {
 
         {notFound && (
           <p className="text-red-600 text-sm md:text-base">
-            No packets found for transaction hash <strong>{tx}</strong>
+            No packets found for transaction hash{" "}
+            <strong className="break-all">{tx}</strong>
           </p>
         )}
       </div>
