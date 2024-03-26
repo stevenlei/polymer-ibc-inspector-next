@@ -81,6 +81,12 @@ export default function Home() {
                     timestamp
                     txHash
                     portAddress
+                    latencyStats {
+                      p50: median
+                      p90
+                      p95
+                      p99
+                    }
                   }
                 }
               }

@@ -101,13 +101,13 @@ const Packet = ({ channel }) => (
           <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[0] && (
               <>
-                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-24">
                   <span className="text-slate-500">Data</span>
                   <span className="font-mono text-slate-800">
                     (Coming Soon)
                   </span>
                 </div>
-                {/* <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
+                {/* <div className="flex flex-col text-xs w-32 w-full lg:w-24">
                           <span className="text-slate-500">Arrival</span>
                           <span className="font-mono text-slate-800">
                             + {channel.states[0].arrival} seconds
@@ -200,17 +200,17 @@ const Packet = ({ channel }) => (
           <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[1] && (
               <>
-                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-24">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[1] && channel.states[0] && (
                     <span className="font-mono text-slate-800">
-                      +{" "}
+                      +
                       {Math.round(
                         (channel.states[1].arrival -
                           channel.states[0].arrival) /
                           1000
-                      )}{" "}
-                      seconds
+                      )}
+                      s
                     </span>
                   )}
                 </div>
@@ -299,11 +299,11 @@ const Packet = ({ channel }) => (
           <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[2] && (
               <>
-                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
+                {/* <div className="flex flex-col text-xs w-32 w-full lg:w-24">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[2] && channel.states[1] && (
                     <span className="font-mono text-slate-800">
-                      +{" "}
+                      +
                       {Math.round(
                         (channel.states[2].arrival -
                           channel.states[1].arrival) /
@@ -312,7 +312,7 @@ const Packet = ({ channel }) => (
                       seconds
                     </span>
                   )}
-                </div>
+                </div> */}
                 <div className="flex flex-col text-xs w-20 w-full lg:w-auto">
                   <span className="text-slate-500">Block</span>
                   <span className="font-mono text-slate-800">
@@ -400,17 +400,17 @@ const Packet = ({ channel }) => (
           <div className="flex lg:space-x-8 flex-wrap lg:flex-nowrap w-full lg:w-auto space-y-2 lg:space-y-0">
             {channel.states[3] && (
               <>
-                <div className="flex flex-col text-xs w-32 w-full lg:w-auto">
+                <div className="flex flex-col text-xs w-32 w-full lg:w-24">
                   <span className="text-slate-500">Arrival</span>
                   {channel.states[3] && channel.states[2] && (
                     <span className="font-mono text-slate-800">
-                      +{" "}
+                      +
                       {Math.round(
                         (channel.states[3].arrival -
                           channel.states[2].arrival) /
                           1000
-                      )}{" "}
-                      seconds
+                      )}
+                      s
                     </span>
                   )}
                 </div>
