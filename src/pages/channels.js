@@ -52,6 +52,7 @@ export default function Home() {
                       name
                     }
                     client
+                    timestamp
                   }
                   status
                   chain {
@@ -62,6 +63,7 @@ export default function Home() {
                   portId
                   connectionHops
                   client
+                  timestamp
                 }
               }
             }
@@ -256,6 +258,25 @@ export default function Home() {
                     <span className="text-slate-500">connectionHops</span>
                     <span className="font-mono text-blue-600 break-all">
                       {JSON.stringify(channel.counterparty.connectionHops)}
+                    </span>
+                  </div>
+                </li>
+                <li className="flex justify-between bg-slate-100 border-b border-slate-200">
+                  <div className="px-3 py-2 w-1/2 flex flex-col text-xs bg-slate-100">
+                    <span className="text-slate-500">Established</span>
+                    <span className="font-mono text-blue-600 break-all">
+                      {channel.timestamp} (
+                      {new Date(channel.timestamp * 1000).toLocaleString()})
+                    </span>
+                  </div>
+                  <div className="px-3 py-2 w-1/2 flex flex-col text-xs text-right bg-white">
+                    <span className="text-slate-500">Established</span>
+                    <span className="font-mono text-blue-600 break-all">
+                      {channel.counterparty.timestamp} (
+                      {new Date(
+                        channel.counterparty.timestamp * 1000
+                      ).toLocaleString()}
+                      )
                     </span>
                   </div>
                 </li>
