@@ -2,12 +2,12 @@ import Link from "next/link";
 
 const Header = ({ page, version = "v0.1 (MVP)" }) => (
   <header className="flex justify-between flex-wrap">
-    <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-800">
+    <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800">
       <Link href="/">Polymer IBC Inspector</Link>
       <span className="text-sm font-normal ml-2 text-slate-400">v0.3</span>
     </h1>
-    <div className="flex gap-x-12 items-center">
-      <ul className="mt-4 md:mt-0 flex gap-x-12 text-sm lg:text-lg">
+    <div className="flex gap-x-8 items-center w-full md:w-auto">
+      <ul className="mt-4 md:mt-0 flex gap-x-8 lg:gap-x-12 text-sm md:text-base lg:text-lg">
         <li>
           <Link
             href="/"
@@ -38,10 +38,20 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
             Channels
           </Link>
         </li>
+        <li>
+          <Link
+            href="/chains"
+            className={`${
+              page === "Chains" ? "text-slate-800" : "text-slate-500"
+            }`}
+          >
+            Chains
+          </Link>
+        </li>
       </ul>
       <a
         href="https://x.com/stevenkin"
-        className="absolute top-2 right-0 sm:static flex text-sm mr-2 ml-4 opacity-90 hover:opacity-100 hover:bg-slate-300 rounded-full p-2"
+        className="absolute top-2 right-0 md:static flex text-sm mr-2 ml-4 opacity-90 hover:opacity-100 hover:bg-slate-300 rounded-full p-2"
         target="_blank"
       >
         <svg
