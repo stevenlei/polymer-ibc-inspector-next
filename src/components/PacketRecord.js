@@ -1,3 +1,5 @@
+import NetworkBadge from "./NetworkBadge";
+
 const Packet = ({ channel, tx }) => {
   // const latencyStats = calculateLatencyPercentage(
   //   channel.states[3].latency,
@@ -165,23 +167,11 @@ const Packet = ({ channel, tx }) => {
                   </div>
                 </>
               )}
-              {channel.fromChain.id === "optimism-sepolia" ? (
-                <span
-                  className={`badge-op self-center absolute ${
-                    channel.states[0] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  OP
-                </span>
-              ) : (
-                <span
-                  className={`badge-base self-center absolute ${
-                    channel.states[0] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  BASE
-                </span>
-              )}
+
+              <NetworkBadge
+                network={channel.fromChain.id}
+                className={`${channel.states[0] ? "top-0" : "top-2"}`}
+              />
             </div>
           </li>
           <li
@@ -314,23 +304,11 @@ const Packet = ({ channel, tx }) => {
                   </div>
                 </>
               )}
-              {channel.toChain.id === "optimism-sepolia" ? (
-                <span
-                  className={`badge-op self-center absolute ${
-                    channel.states[1] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  OP
-                </span>
-              ) : (
-                <span
-                  className={`badge-base self-center absolute ${
-                    channel.states[1] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  BASE
-                </span>
-              )}
+
+              <NetworkBadge
+                network={channel.toChain.id}
+                className={`${channel.states[1] ? "top-0" : "top-2"}`}
+              />
             </div>
           </li>
           <li
@@ -428,23 +406,11 @@ const Packet = ({ channel, tx }) => {
                   </div>
                 </>
               )}
-              {channel.toChain.id === "optimism-sepolia" ? (
-                <span
-                  className={`badge-op self-center absolute ${
-                    channel.states[2] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  OP
-                </span>
-              ) : (
-                <span
-                  className={`badge-base self-center absolute ${
-                    channel.states[2] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  BASE
-                </span>
-              )}
+
+              <NetworkBadge
+                network={channel.toChain.id}
+                className={`${channel.states[2] ? "top-0" : "top-2"}`}
+              />
             </div>
           </li>
           <li
@@ -577,23 +543,11 @@ const Packet = ({ channel, tx }) => {
                   </div>
                 </>
               )}
-              {channel.fromChain.id === "optimism-sepolia" ? (
-                <span
-                  className={`badge-op self-center absolute ${
-                    channel.states[3] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  OP
-                </span>
-              ) : (
-                <span
-                  className={`badge-base self-center absolute ${
-                    channel.states[3] ? "top-0" : "top-2"
-                  } right-2 lg:static`}
-                >
-                  BASE
-                </span>
-              )}
+
+              <NetworkBadge
+                network={channel.fromChain.id}
+                className={`${channel.states[3] ? "top-0" : "top-2"}`}
+              />
             </div>
           </li>
         </ul>
@@ -618,6 +572,14 @@ const explorerUrl = (chain, address, type) => {
       return `https://base-sepolia.blockscout.com/address/${address}`;
     } else if (type === "block") {
       return `https://base-sepolia.blockscout.com/block/${address}`;
+    }
+  } else if (chain === "molten-magma") {
+    if (type === "tx") {
+      return `https://unidex-sepolia.explorer.caldera.xyz/tx/${address}`;
+    } else if (type === "address") {
+      return `https://unidex-sepolia.explorer.caldera.xyz/address/${address}`;
+    } else if (type === "block") {
+      return `https://unidex-sepolia.explorer.caldera.xyz/block/${address}`;
     }
   }
 };
