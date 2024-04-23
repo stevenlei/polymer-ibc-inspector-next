@@ -8,7 +8,7 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
     </h1>
     <div className="flex gap-x-8 items-center w-full md:w-auto">
       <ul className="mt-4 md:mt-0 flex gap-x-8 lg:gap-x-12 text-sm md:text-base lg:text-lg">
-        <li>
+        {/* <li>
           <Link
             href="/"
             className={`${
@@ -17,7 +17,7 @@ const Header = ({ page, version = "v0.1 (MVP)" }) => (
           >
             Live
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link
             href="/packets"
